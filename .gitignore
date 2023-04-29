@@ -1,0 +1,8 @@
+#directories
+/cmake-build-debug
+/.vscode
+/obj
+
+#files
+*.o
+graph.txt
