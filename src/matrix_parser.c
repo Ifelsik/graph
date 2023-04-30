@@ -30,11 +30,13 @@ int getMatrixSize(char **matrix) {
     return matrix_size;
 }
 
-int parseSquareMatrix(char **matrix, int ***parsed_matrix) {
+int** parseSquareMatrix(char **matrix) {
     int row_len = 0;
     int matrix_size = getMatrixSize(matrix);
     char *row = NULL;
-    *parsed_matrix = (int**) malloc(sizeof(int*) * matrix_size);
+    int **parsed_matrix = NULL;
+    
+    parsed_matrix = (int**) malloc(sizeof(int*) * matrix_size);
 
 
     while ((*matrix)[row_len] != '\0') {
@@ -43,25 +45,25 @@ int parseSquareMatrix(char **matrix, int ***parsed_matrix) {
 
     if (matrix == NULL || *matrix == NULL) {
         printf("ERROR: matrix is empty\n");
-        return 1;
+        exit(1);
     }
 
     for(int i = 0; i < matrix_size; i++) {
         char* matrix_row_copy = NULL;
         int j = 0;
-        (*parsed_matrix)[i] = (int*) malloc(sizeof(int) * matrix_size);
+        parsed_matrix[i] = (int*) malloc(sizeof(int) * matrix_size);
 
         row = (char*) malloc(sizeof(char) * row_len);
         matrix_row_copy = (char*) malloc(sizeof(char) * row_len);
         strcpy(matrix_row_copy, matrix[i]);
         row = strtok(matrix_row_copy, " ");
         while (row != NULL) {
-            (*parsed_matrix)[i][j] = atoi(row);
+            parsed_matrix[i][j] = atoi(row);
             row = strtok(NULL, " ");
             j++;
         }
         free(matrix_row_copy);
         free(row);
     }
-    return 0;
+    return parsed_matrix;
 }

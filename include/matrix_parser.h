@@ -13,6 +13,6 @@
 
 int getMatrixSize(char **matrix);
 
-int parseSquareMatrix(char **matrix, int ***parsed_matrix);
+int** parseSquareMatrix(char **matrix);
 
 #endif //FLITA2_MATRIX_PARSER_H

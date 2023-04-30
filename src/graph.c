@@ -99,22 +99,24 @@ void delGraph(tGraph** graph_p) {
 void showGraph(tGraph* graph_p) {
     FILE *file_p = NULL;
     char *template = NULL;
-    readFile("/home/misha_che/C/flita2/files/dot_template.txt", &template);
+    template = readFile("./files/dot_template.txt", template);
 
-    file_p = fopen("/home/misha_che/C/flita2/graph.txt", "w");
+    file_p = fopen("./graph.txt", "w");
     assert(file_p != NULL);
     fputs(template, file_p);
 
     for (int i = 0; i < graph_p->edges_n; i++) {
         int left_vertex_id = 0;
         int right_vertex_id = 0;
+        float weight = 0;
         left_vertex_id = graph_p->edges[i]->vertex_1->id;
         right_vertex_id = graph_p->edges[i]->vertex_2->id;
-        fprintf(file_p, "%d -- %d\n", left_vertex_id, right_vertex_id); 
+        weight = (float) graph_p->edges[i]->weight;
+        fprintf(file_p, "%d -- %d[label=\"%.2f\"]\n", left_vertex_id, right_vertex_id, weight); 
     }
     fputc('}', file_p);
 
     fclose(file_p);
 
-    system("dot -Tpng > graph_vizualization.png < graph.txt");
+    system("dot -Tpng > graph_visualization.png < graph.txt");
 }

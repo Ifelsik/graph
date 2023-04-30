@@ -25,4 +25,4 @@ mkdir:
 	mkdir $(OBJ_DIR) -p
 
 clean:
-	rm -rf *.o $(OBJ_DIR) $(EXECUTABLE) graph.txt graph_vizualization.png
+	rm -rf *.o $(OBJ_DIR) $(EXECUTABLE) graph.txt graph_visualization.png

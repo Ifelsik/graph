@@ -8,13 +8,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <assert.h>
 
 #define BASE_LEN 256
 
-int readFile(char *path, char **filebuf);
+char* readFile(char *path, char *filebuf);
 
 int appendToFile(char *path, char *text);
 
-int readLinesFromFile(char *path, char ***lines);
+char** readLinesFromFile(char *path);
 
 #endif //FLITA2_FILE_H
