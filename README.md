@@ -1,10 +1,10 @@
-#Graph implementation in pure C  
+# Graph implementation in pure C  
 
-##Description  
+## Description  
 
 Only in Linux!!! You can set a graph and visualize it with Graphviz  
 
-##How to do?  
+## How to do?  
 
 Before start, you need to install Graphviz  
 For Ubuntu Linux  
