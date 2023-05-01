@@ -25,7 +25,7 @@ tEdge* setEdge(tEdge *edge_p, int id, int weight, tVertex *vert1, tVertex *vert2
     return edge_p;
 }
 
-tVertex* find_vertex_by_id(tGraph *graph_p, int id) {
+tVertex* findVertexById(tGraph *graph_p, int id) {
     for (int i = 0; i < graph_p->vertices_n; i++) {
         if (graph_p->vertices[i]->id == id)
             return graph_p->vertices[i];
@@ -96,9 +96,11 @@ void delGraph(tGraph** graph_p) {
     free(*graph_p);
 }
 
-void showGraph(tGraph* graph_p) {
+void showGraph(tGraph* graph_p) {  // remake
     FILE *file_p = NULL;
     char *template = NULL;
+    int *connected_vertices_id = (int*) calloc(graph_p->vertices_n, sizeof(int));
+
     template = readFile("./files/dot_template.txt", template);
 
     file_p = fopen("./graph.txt", "w");
@@ -111,8 +113,15 @@ void showGraph(tGraph* graph_p) {
         float weight = 0;
         left_vertex_id = graph_p->edges[i]->vertex_1->id;
         right_vertex_id = graph_p->edges[i]->vertex_2->id;
+        connected_vertices_id[left_vertex_id]++;
+        connected_vertices_id[right_vertex_id]++;
         weight = (float) graph_p->edges[i]->weight;
         fprintf(file_p, "%d -- %d[label=\"%.2f\"]\n", left_vertex_id, right_vertex_id, weight); 
+    }
+    for (int i = 0; i < graph_p->vertices_n; i++) {
+        if (connected_vertices_id[i] == 0) {
+            fprintf(file_p, "%d -- %d[style=invis]\n", i, i);
+        }
     }
     fputc('}', file_p);
 

@@ -1,5 +1,6 @@
 #include "./include/main.h"
 
+
 int main() {
     char *path = "./files/test.txt";
     char **lines = NULL;
