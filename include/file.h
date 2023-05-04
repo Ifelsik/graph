@@ -12,7 +12,7 @@
 
 #define BASE_LEN 256
 
-char* readFile(char *path, char *filebuf);
+char* readFile(char *path);
 
 int appendToFile(char *path, char *text);
 

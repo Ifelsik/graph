@@ -7,8 +7,9 @@
 /*
  @brief Exit statuses:
  */
-char* readFile(char *path, char *filebuf) {
+char* readFile(char *path) {
     FILE *file_p = NULL;
+    char *filebuf = NULL;
     int file_size = 0;
     char c = 0;
     file_p = fopen(path, "rb");
@@ -73,7 +74,7 @@ char** readLinesFromFile(char *path) {
     
     assert(file_p != NULL);
 
-    filebuf = readFile(path, filebuf);
+    filebuf = readFile(path);
     for (int i = 0; filebuf[i] != '\0'; i++) {
         if (filebuf[i] == '\n' || filebuf[i + 1] == '\0')
             number_of_lines++;

@@ -101,7 +101,7 @@ void showGraph(tGraph* graph_p) {  // remake
     char *template = NULL;
     int *connected_vertices_id = (int*) calloc(graph_p->vertices_n, sizeof(int));
 
-    template = readFile("./files/dot_template.txt", template);
+    template = readFile("./files/dot_template.txt");
 
     file_p = fopen("./graph.txt", "w");
     assert(file_p != NULL);
@@ -129,3 +129,8 @@ void showGraph(tGraph* graph_p) {  // remake
 
     system("dot -Tpng > graph_visualization.png < graph.txt");
 }
+
+/*bool dfsCheckConnectionGraph(tGraph *graph_p, int start_id, bool *visited) {
+    visited[start_id] = true;
+}
+*/
