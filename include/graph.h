@@ -38,4 +38,8 @@ void delGraph(tGraph** graph_p);
 
 void showGraph(tGraph* graph_p);
 
+void dfsGraph(tGraph *graph_p, int start_id, bool *visited);
+
+bool isConnectedGraph(tGraph *graph_p, bool *visited);
+
 #endif

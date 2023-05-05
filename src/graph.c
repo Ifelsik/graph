@@ -130,7 +130,28 @@ void showGraph(tGraph* graph_p) {  // remake
     system("dot -Tpng > graph_visualization.png < graph.txt");
 }
 
-/*bool dfsCheckConnectionGraph(tGraph *graph_p, int start_id, bool *visited) {
+void dfsGraph(tGraph *graph_p, int start_id, bool *visited) {
+    tVertex *current_vertex = graph_p->vertices[start_id];
     visited[start_id] = true;
+    for (int i = 0; i < current_vertex->adjacent_edges_num; i++) {
+        tVertex *adjacent_vertex = NULL;
+        if (current_vertex->adjacent_edges[i]->vertex_1
+        == current_vertex->adjacent_edges[i]->vertex_2) {
+            adjacent_vertex = current_vertex;
+        } else if (current_vertex == current_vertex->adjacent_edges[i]->vertex_1) {
+            adjacent_vertex = current_vertex->adjacent_edges[i]->vertex_2;
+        } else {
+            adjacent_vertex = current_vertex->adjacent_edges[i]->vertex_1;
+        }
+        if (!visited[adjacent_vertex->id])
+            dfsGraph(graph_p, adjacent_vertex->id, visited);
+    }
 }
-*/
+
+bool isConnectedGraph(tGraph *graph_p, bool *visited) {
+    for (int i = 0; i < graph_p->vertices_n; i++) {
+        if (!visited[i])
+            return false;
+    }
+    return true;
+}

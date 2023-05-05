@@ -33,7 +33,7 @@ char* readFile(char *path) {
         if (c != '\r')
             filebuf[i] = c;
         else
-            filebuf[i] = '\0';
+            filebuf[i] = ' ';
     }
     filebuf[file_size] = '\0';
     //

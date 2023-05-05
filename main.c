@@ -27,8 +27,18 @@ int main() {
 
     graph = initializeGraph(vertices_number, edges_number);
     graph = createGraph(graph, matrix);
-    showGraph(graph);
-    delGraph(&graph);
 
+    bool *visited_vertices = (bool*) calloc(graph->vertices_n, sizeof(bool));
+    dfsGraph(graph, 0, visited_vertices);
+    if (isConnectedGraph(graph, visited_vertices)) {
+        puts("Connected graph");
+    } else {
+        puts("Disconected graph");
+    }
+    
+    showGraph(graph);
+
+    free(visited_vertices);
+    delGraph(&graph);
     return 0;
 }
